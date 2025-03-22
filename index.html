@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vi's Corner - Tư Vấn Trang Điểm & Chăm Sóc Da</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        body { background-color: #fdf6e3; color: #5a4638; font-family: 'Georgia', serif; }
+        .btn { background-color: #b48e72; color: white; }
+        .btn:hover { background-color: #a07a60; }
+    </style>
+</head>
+<body>
+    <header class="text-center py-6 bg-[#d4af8f] text-black">
+        <h1 class="text-3xl font-bold">Khám Phá Phong Cách Trang Điểm & Chăm Sóc Da</h1>
+        <p class="text-lg">Chat với chuyên gia AI để nhận tư vấn ngay</p>
+    </header>
+    
+    <section class="text-center py-12">
+        <h2 class="text-2xl font-semibold">Chatbot AI sẵn sàng hỗ trợ bạn!</h2>
+        <p class="text-gray-600">Chọn loại da, phong cách trang điểm của bạn để nhận gợi ý phù hợp.</p>
+        <a href="https://zalo.me/0329909247" class="btn px-6 py-3 mt-4 rounded-lg text-lg shadow-lg inline-block">Bắt đầu tư vấn ngay</a>
+    </section>
+    
+    <section class="max-w-6xl mx-auto py-12">
+        <h2 class="text-2xl font-bold text-center">Sản phẩm gợi ý từ chuyên gia</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6" id="product-list"></div>
+    </section>
+    
+    <div class="fixed bottom-4 right-4 bg-white p-4 shadow-lg rounded-lg">
+        <h3 class="font-bold text-lg">Giỏ hàng</h3>
+        <ul id="cart-list" class="text-sm"></ul>
+        <p><strong>Tổng sản phẩm:</strong> <span id="total-items">0</span></p>
+        <p><strong>Tổng tiền:</strong> <span id="total-price">₫0</span></p>
+        <button onclick="checkout()" class="btn px-4 py-2 mt-3 rounded shadow">Thanh toán</button>
+    </div>
+    
+    <script>
+        const products = [
+            { name: "Sữa rửa mặt Skincode", image: "https://skincode.com.vn/upload/2022/10/17/images/skincode-3-in-1-gentle-cleanser.jpg", price: 500000, details: "Làm sạch bụi bẩn, tẩy trang và làm dịu da." },
+            { name: "Sữa rửa mặt kiềm dầu Skincode", image: "https://skincode.com.vn/upload/2022/10/17/images/skincode-essentials-sos-oil-control-clarifying-wash(1).jpg", price: 650000, details: "Điều tiết dầu và ngăn ngừa mụn." }
+        ];
+        
+        const cart = {};
+        
+        function renderProducts() {
+            const container = document.getElementById('product-list');
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.classList.add("bg-white", "p-4", "shadow-lg", "rounded-lg");
+                productCard.innerHTML = `
+                    <img src="${product.image}" class="w-full h-48 object-cover rounded">
+                    <h3 class="text-lg font-semibold mt-4">${product.name}</h3>
+                    <p class="text-[#b48e72] font-bold">₫${product.price.toLocaleString()}</p>
+                    <button onclick="addToCart('${product.name}', ${product.price})" class="btn px-4 py-2 mt-3 rounded shadow">Mua ngay</button>
+                    <button onclick="alert('${product.details}')" class="btn px-4 py-2 mt-3 rounded shadow">Chi tiết</button>
+                `;
+                container.appendChild(productCard);
+            });
+        }
+        
+        function addToCart(name, price) {
+            if (cart[name]) {
+                cart[name].quantity += 1;
+            } else {
+                cart[name] = { price, quantity: 1 };
+            }
+            updateCart();
+        }
+        
+        function updateCart() {
+            const cartList = document.getElementById('cart-list');
+            cartList.innerHTML = '';
+            let totalItems = 0, totalPrice = 0;
+            Object.keys(cart).forEach(item => {
+                const { price, quantity } = cart[item];
+                totalItems += quantity;
+                totalPrice += price * quantity;
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${item} x${quantity} - ₫${(price * quantity).toLocaleString()}`;
+                cartList.appendChild(listItem);
+            });
+            document.getElementById('total-items').textContent = totalItems;
+            document.getElementById('total-price').textContent = `₫${totalPrice.toLocaleString()}`;
+        }
+        
+        function checkout() {
+            const orderId = `VC-${new Date().toISOString().slice(0,10).replace(/-/g, '')}-${Math.floor(Math.random() * 1000)}`;
+            const orderData = { orderId, cart };
+            
+            fetch('/save_order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderData)
+            });
+            
+            alert(`Mã đơn hàng: ${orderId}\nChuyển khoản đến:\nVCB - 0071004369538\nChủ TK: Nguyễn Song Quỳnh Vi\nNội dung: ${orderId}`);
+            window.location.href = "https://zalo.me/0329909247";
+        }
+        
+        renderProducts();
+    </script>
+    
+    <script>
+        window.lovinbotChatbotConfig = { token: 'EYo0ZfYTjSBZXUvO', baseUrl: 'https://app.lovinbot.ai', colorBg: '#2971ff' };
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/lekimminhquan/chatbot@1.1.3/chatbot.min.js" id="EYo0ZfYTjSBZXUvO" defer></script>
+</body>
+</html>
