@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Tư Vấn Trang Điểm & Chăm Sóc Da</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    
+    <!-- Header -->
+    <header class="bg-gray-700 text-white text-center py-6">
+        <h1 class="text-3xl font-bold">Khám Phá Phong Cách Trang Điểm & Chăm Sóc Da</h1>
+        <p class="text-lg">Chat với chuyên gia AI để nhận tư vấn ngay</p>
+    </header>
+    
+    <!-- Danh sách sản phẩm -->
+    <section class="max-w-6xl mx-auto py-12">
+        <h2 class="text-2xl font-bold text-center">Sản phẩm gợi ý từ chuyên gia</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            
+            <div class="bg-white p-4 shadow-md rounded-lg">
+                <h3 class="text-lg font-semibold">Sữa rửa mặt tẩy trang Skincode 3-in-1</h3>
+                <p class="text-gray-600">Giá: <span class="font-bold">₫1,100,000</span></p>
+                <button class="bg-gray-700 text-white px-4 py-2 mt-3 rounded shadow hover:bg-gray-800" onclick="showDetails(0)">Chi tiết</button>
+            </div>
+            
+            <div class="bg-white p-4 shadow-md rounded-lg">
+                <h3 class="text-lg font-semibold">Sữa rửa mặt kiềm dầu Skincode S.O.S</h3>
+                <p class="text-gray-600">Giá: <span class="font-bold">₫995,000</span></p>
+                <button class="bg-gray-700 text-white px-4 py-2 mt-3 rounded shadow hover:bg-gray-800" onclick="showDetails(1)">Chi tiết</button>
+            </div>
+            
+            <div class="bg-white p-4 shadow-md rounded-lg">
+                <h3 class="text-lg font-semibold">Gel rửa mặt Skincode Essentials</h3>
+                <p class="text-gray-600">Giá: <span class="font-bold">₫950,000</span></p>
+                <button class="bg-gray-700 text-white px-4 py-2 mt-3 rounded shadow hover:bg-gray-800" onclick="showDetails(2)">Chi tiết</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Chi Tiết Sản Phẩm -->
+    <div id="productModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg max-w-lg w-full">
+            <h2 id="modalTitle" class="text-xl font-bold"></h2>
+            <p id="modalContent" class="text-gray-700 mt-2"></p>
+            <button class="bg-gray-700 text-white px-4 py-2 mt-4 rounded shadow hover:bg-gray-800" onclick="closeModal()">Đóng</button>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                title: "Sữa rửa mặt tẩy trang Skincode 3-in-1",
+                details: "Làm sạch bụi bẩn, tẩy trang và làm dịu da. Không chứa paraben."
+            },
+            {
+                title: "Sữa rửa mặt kiềm dầu Skincode S.O.S",
+                details: "Loại bỏ bã nhờn, kiểm soát dầu. Thành phần: Kẽm PCA, chiết xuất cây phỉ."
+            },
+            {
+                title: "Gel rửa mặt Skincode Essentials",
+                details: "Làm sạch sâu, chống khuẩn, phù hợp da dầu. Thành phần: Chiết xuất lô hội, vitamin B5."
+            }
+        ];
+
+        function showDetails(index) {
+            document.getElementById("modalTitle").innerText = products[index].title;
+            document.getElementById("modalContent").innerText = products[index].details;
+            document.getElementById("productModal").classList.remove("hidden");
+        }
+
+        function closeModal() {
+            document.getElementById("productModal").classList.add("hidden");
+        }
+    </script>
+</body>
+</html>
