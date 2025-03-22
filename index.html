@@ -20,10 +20,9 @@
     </header>
     
     <section class="hero">
-        <h2>Khám Phá Phong Cách Trang Điểm & Chăm Sóc Da Cùng Vi’s Corner</h2>
-        <p>Vi’s Corner giúp bạn hiểu rõ làn da, tìm kiếm phong cách trang điểm phù hợp & chọn sản phẩm làm đẹp hoàn hảo.</p>
-        <a href="#" class="btn" onclick="openChatbot()">Bắt đầu tư vấn ngay</a>
-        <a href="products.html" class="btn secondary">Xem sản phẩm hot</a>
+        <div class="hero-image">
+            <img src="https://c.files.bbci.co.uk/6976/production/_103889962_1a.jpg" alt="Hình nền aesthetic với các sản phẩm makeup, skincare">
+        </div>
     </section>
 
     <section class="about">
@@ -31,15 +30,11 @@
         <p>Vi’s Corner không bán sản phẩm đại trà. Chúng tôi tập trung vào tư vấn cá nhân hóa để giúp bạn chọn đúng sản phẩm theo tình trạng da & phong cách trang điểm yêu thích.</p>
     </section>
 
-    <section class="chatbot">
-        <h2>Nhận Ngay Tư Vấn Chăm Sóc Da & Makeup Chỉ Trong 1 Phút!</h2>
-        <p>Chatbot AI sẽ giúp bạn:</p>
-        <ul>
-            <li>Kiểm tra tình trạng da</li>
-            <li>Gợi ý sản phẩm skincare phù hợp</li>
-            <li>Đề xuất phong cách makeup theo sở thích</li>
-        </ul>
-        <a href="#" class="btn" onclick="openChatbot()">Bắt đầu tư vấn ngay</a>
+    <section class="expert">
+        <h2>Chuyên Gia Trang Điểm & Tư Vấn Skincare</h2>
+        <div class="expert-image">
+            <img src="https://skincode.com.vn/images/slider/bo-suu-tap-alpine-white-vi1676090507.jpg" alt="Hình ảnh chuyên gia trang điểm tư vấn">
+        </div>
     </section>
 
     <script>
@@ -88,16 +83,10 @@
         padding: 50px;
         background: #ffede1;
     }
-    .btn {
-        display: inline-block;
-        margin: 10px;
-        padding: 10px 20px;
-        background: #c97b63;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-    }
-    .btn.secondary {
-        background: #d99882;
+    .hero-image img, .expert-image img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 10px;
     }
 </style>
