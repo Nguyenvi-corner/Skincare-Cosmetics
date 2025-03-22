@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vi's Corner - Chăm sóc da & Trang điểm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .hero {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 50px;
+            border-radius: 10px;
+        }
+        .chatbot-btn, .zalo-btn, .pay-btn {
+            display: block;
+            padding: 10px 20px;
+            background: #2971ff;
+            color: white;
+            border: none;
+            margin: 10px auto;
+            text-decoration: none;
+            width: 200px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Chào mừng đến với Vi's Corner</h1>
+            <p>Khám phá các sản phẩm chăm sóc da và trang điểm phù hợp với bạn.</p>
+            <a href="https://zalo.me/0329909247" class="zalo-btn">Bắt đầu tư vấn ngay</a>
+        </div>
+    </div>
+    
+    <section class="max-w-6xl mx-auto py-12">
+        <h2 class="text-2xl font-bold text-center">Sản phẩm gợi ý từ chuyên gia</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6" id="product-list"></div>
+    </section>
+    
+    <h2>Giỏ hàng</h2>
+    <ul id="cart-list"></ul>
+    <p>Tổng số sản phẩm: <span id="total-items">0</span></p>
+    <p>Tổng tiền: <span id="total-price">₫0</span></p>
+    <button class="pay-btn" onclick="checkout()">Thanh toán</button>
+    <button class="chatbot-btn" id="chatbot">Chat với AI</button>
+    
+    <script>
+        window.lovinbotChatbotConfig = {
+            token: 'EYo0ZfYTjSBZXUvO',
+            baseUrl: 'https://app.lovinbot.ai',
+            colorBg: '#2971ff',
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/lekimminhquan/chatbot@1.1.3/chatbot.min.js" id="EYo0ZfYTjSBZXUvO" defer></script>
+    
+    <script>
+        const products = [
+            { name: "Nước tẩy trang", image: "skincode-essentials-micellar-water-all-in-one-cleanser.jpg", price: 500000 },
+            { name: "Gel rửa mặt", image: "skincode-essentials-purifying-cleansing-gel.jpg", price: 550000 }
+        ];
+
+        const cart = {};
+
+        function renderProducts() {
+            const container = document.getElementById('product-list');
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.classList.add("bg-white", "p-4", "shadow-lg", "rounded-lg");
+                productCard.innerHTML = `
+                    <img src="${product.image}" class="w-full h-48 object-cover rounded">
+                    <h3 class="text-lg font-semibold mt-4">${product.name}</h3>
+                    <p class="text-[#b48e72] font-bold">₫${product.price.toLocaleString()}</p>
+                    <button onclick="addToCart('${product.name}', ${product.price})" class="btn px-4 py-2 mt-3 rounded shadow">Mua ngay</button>
+                `;
+                container.appendChild(productCard);
+            });
+        }
+
+        function addToCart(name, price) {
+            if (cart[name]) {
+                cart[name].quantity += 1;
+            } else {
+                cart[name] = { price, quantity: 1 };
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartList = document.getElementById('cart-list');
+            cartList.innerHTML = '';
+            let totalItems = 0, totalPrice = 0;
+            Object.keys(cart).forEach(item => {
+                const { price, quantity } = cart[item];
+                totalItems += quantity;
+                totalPrice += price * quantity;
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${item} x${quantity} - ₫${(price * quantity).toLocaleString()}`;
+                cartList.appendChild(listItem);
+            });
+            document.getElementById('total-items').textContent = totalItems;
+            document.getElementById('total-price').textContent = `₫${totalPrice.toLocaleString()}`;
+        }
+
+        function checkout() {
+            let orderId = 'VC-' + new Date().toISOString().replace(/[-:.TZ]/g, '').slice(0, 14);
+            let cartData = { orderId, items: cart, total: document.getElementById('total-price').textContent };
+            
+            fetch('/save_order', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(cartData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Đơn hàng đã được lưu! Mã đơn: ' + orderId);
+                window.location.href = 'https://zalo.me/0329909247';
+            })
+            .catch(error => console.error('Lỗi:', error));
+        }
+        
+        renderProducts();
+    </script>
+</body>
+</html>
