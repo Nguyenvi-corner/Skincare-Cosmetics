@@ -78,6 +78,49 @@
             color: white;
             margin-top: 20px;
         }
+
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .popup-content h2 {
+            color: #d9a7a0;
+            margin-bottom: 10px;
+        }
+
+        .popup-content p {
+            color: #5a3e36;
+            line-height: 1.6;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #d9a7a0;
+        }
     </style>
 </head>
 <body>
@@ -96,32 +139,131 @@
             <div class="tip-content">
                 <h2>Cách chọn mỹ phẩm cho từng loại da</h2>
                 <p>Hướng dẫn chọn mỹ phẩm phù hợp với từng loại da, giúp bạn tránh kích ứng và đạt hiệu quả tốt nhất.</p>
-                <a href="tip1.html">Xem thêm</a>
+                <a href="#" class="xem-them" data-target="popup1">Xem thêm</a>
             </div>
-            <img src="images/tip1.jpg" alt="Mỹ phẩm phù hợp với từng loại da">
+            <img src="https://images.unsplash.com/photo-1621139454442-f5137f198588?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mỹ phẩm phù hợp với từng loại da">
         </section>
         <section class="tip">
             <div class="tip-content">
                 <h2>Các lỗi makeup thường gặp</h2>
                 <p>Những sai lầm phổ biến trong trang điểm và cách khắc phục để có lớp nền hoàn hảo.</p>
-                <a href="tip2.html">Xem thêm</a>
+                <a href="#" class="xem-them" data-target="popup2">Xem thêm</a>
             </div>
-            <img src="images/tip2.jpg" alt="Lỗi makeup phổ biến">
+            <img src="https://plus.unsplash.com/premium_photo-1664647318833-b7782194d783?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lỗi makeup phổ biến">
         </section>
         <section class="tip">
             <div class="tip-content">
                 <h2>Routine skincare theo mùa</h2>
                 <p>Cách điều chỉnh skincare routine theo thời tiết để bảo vệ da luôn khỏe đẹp.</p>
-                <a href="tip3.html">Xem thêm</a>
+                <a href="#" class="xem-them" data-target="popup3">Xem thêm</a>
             </div>
-            <img src="images/tip3.jpg" alt="Skincare theo mùa">
+            <img src="https://images.unsplash.com/photo-1622549743372-99598947a745?q=80&w=2035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Skincare theo mùa">
         </section>
     </main>
     <footer>
         <p>&copy; 2025 Skincare-Cosmetics. All rights reserved.</p>
     </footer>
-    
-    <!-- Nhúng chatbot Lovinbot -->
-    <script src="https://cdn.lovinbot.com/widget.js" data-token="EYo0ZfYTjSBZXUvO"></script>
+
+    <div id="popup1" class="popup">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <h2>Cách chọn mỹ phẩm cho từng loại da</h2>
+            <p>Hướng dẫn chọn mỹ phẩm phù hợp với từng loại da, giúp bạn tránh kích ứng và đạt hiệu quả tốt nhất.</p>
+            <img src="https://images.unsplash.com/photo-1596462531594-a86756e80e94?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chọn mỹ phẩm cho từng loại da" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+            <p>Chọn mỹ phẩm phù hợp giúp da khỏe đẹp và tránh kích ứng. Dưới đây là cách chọn sản phẩm theo từng loại da:</p>
+            <ul>
+                <li><b>Da dầu:</b> Chọn sản phẩm oil-free, kiềm dầu, kết cấu nhẹ như gel hoặc dạng nước. Thành phần nên có BHA, Niacinamide.</li>
+                <li><b>Da khô:</b> Ưu tiên kem dưỡng ẩm chứa Hyaluronic Acid, Glycerin, Ceramide. Tránh sản phẩm có cồn.</li>
+                <li><b>Da nhạy cảm:</b> Sử dụng sản phẩm dịu nhẹ, không hương liệu, chứa thành phần làm dịu như Centella, Allantoin.</li>
+                <li><b>Da hỗn hợp:</b> Kết hợp sản phẩm kiềm dầu cho vùng chữ T và cấp ẩm cho vùng da khô.</li>
+                <li><b>Da thường:</b> Dễ chăm sóc, nên chọn sản phẩm cân bằng độ ẩm và dưỡng chất.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="popup2" class="popup">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <h2>Các Lỗi Makeup Thường Gặp & Cách Khắc Phục</h2>
+            <p>Những sai lầm phổ biến trong trang điểm và cách khắc phục để có lớp nền hoàn hảo.</p>
+            <img src="https://images.unsplash.com/photo-1591605210356-f85384119156?q=80&w=2023&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Các lỗi makeup thường gặp" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+            <ul>
+                <li><b>Kem nền quá dày:</b> Khiến da trông bí và thiếu tự nhiên. Hãy dùng lượng vừa đủ, tán đều bằng mút ẩm.</li>
+                <li><b>Chọn sai màu kem nền:</b> Màu quá sáng hoặc quá tối sẽ làm da mất tự nhiên. Hãy test màu trên xương hàm để chọn tông phù hợp.</li>
+                <li><b>Lông mày quá đậm:</b> Khiến khuôn mặt trông cứng nhắc. Hãy kẻ theo dáng tự nhiên và tán nhẹ bằng cọ.</li>
+                <li><b>Son bị lem, khô môi:</b> Không tẩy da chết và dưỡng môi trước khi thoa son sẽ khiến son không đều màu. Hãy dùng son dưỡng trước khi đánh son màu.</li>
+                <li><b>Không dùng kem chống nắng:</b> Khiến da dễ lão hóa. Hãy dùng kem chống nắng trước lớp nền để bảo vệ da.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="popup3" class="popup">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <h2>Routine skincare theo mùa</h2>
+            <p>Cách điều chỉnh skincare routine theo thời tiết để bảo vệ da luôn khỏe đẹp.</p>
+            <img src="https://images.unsplash.com/photo-1584798576972-9599f98f9c94?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Routine skincare theo mùa" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+            <p>Routine Skincare Theo Mùa – Bí Quyết Chăm Sóc Da Đúng Cách</p>
+            <ul>
+                <li><b>Xuân:</b> Da dễ nhạy cảm hơn do thay đổi thời tiết. Hãy cấp ẩm nhẹ nhàng và sử dụng kem chống nắng hàng ngày.</li>
+                <li><b>Hè:</b> Da dễ đổ dầu và bít tắc lỗ chân lông. Chọn sữa rửa mặt dịu nhẹ, dùng kem chống nắng kiềm dầu và xịt khoáng cấp ẩm.</li>
+                <li><b>Thu:</b> Không khí bắt đầu hanh khô, cần tăng cường dưỡng ẩm bằng serum cấp nước và mặt nạ dưỡng da.</li>
+                <li><b>Đông:</b> Da dễ bị khô và bong tróc. Hãy dùng kem dưỡng ẩm dày hơn, bổ sung dầu dưỡng và uống đủ nước.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const xemThemButtons = document.querySelectorAll('.xem-them');
+            const popups = document.querySelectorAll('.popup');
+            const popupCloses = document.querySelectorAll('.popup-close');
+
+            xemThemButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const targetId = button.dataset.target;
+                    const targetPopup = document.getElementById(targetId);
+                    if (targetPopup) {
+                        targetPopup.style.display = 'flex';
+                    }
+                });
+            });
+
+            popupCloses.forEach(closeButton => {
+                closeButton.addEventListener('click', () => {
+                    const parentPopup = closeButton.closest('.popup');
+                    if (parentPopup) {
+                        parentPopup.style.display = 'none';
+                    }
+                });
+            });
+
+            // Close popup when clicking outside
+            window.addEventListener('click', (event) => {
+                popups.forEach(popup => {
+                    if (popup.style.display === 'flex' && !popup.querySelector('.popup-content').contains(event.target)) {
+                        popup.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+<script>
+    window.lovinbotChatbotConfig = 
+    {
+      token: 'EYo0ZfYTjSBZXUvO',
+      baseUrl: 'https://app.lovinbot.ai', 
+      imageToggle: 'https://lovinbot-ai.b-cdn.net/upload_files/19a6178d-c899-437a-b42d-30774dca322e/11ddfde1-25e3-4d54-a004-2279d4c41f3c.png', 
+      colorBg: '#d9a7a0',
+    }
+  </script>
+  <script 
+    src="https://cdn.jsdelivr.net/gh/lekimminhquan/chatbot@1.1.3/chatbot.min.js" 
+    id="EYo0ZfYTjSBZXUvO" 
+    defer
+  > 
+  </script>
 </body>
 </html>
