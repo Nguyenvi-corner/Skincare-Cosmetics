@@ -508,21 +508,27 @@
         function showProductDetails(productName) {
             let productDetails = "";
             let productImg = "";
+            let productPrice = 0;
             switch (productName) {
                 case "Skincode 3-in-1 Gentle Cleanser":
                     productDetails = "Không chứa paraben, chất tạo màu, hương liệu và thành phần động vật. Làm sạch bụi bẩn, tẩy trang và làm dịu da. Thoa một lượng nhỏ lên da mặt và cổ, massage nhẹ nhàng rồi rửa lại với nước. Sử dụng hàng ngày, sáng và tối. Phù hợp cho mọi loại da, kể cả da nhạy cảm.";
+                    productImg = "https://skincode.com.vn/upload/2022/10/17/images/skincode-3-in-1-gentle-cleanser-2.jpg";
+                    productPrice = 1100000;
                     break;
                 case "Skincode S.O.S Oil Control":
                     productDetails = "Kẽm PCA, chiết xuất cây phỉ, không chứa paraben. Loại bỏ bụi bẩn, bã nhờn, điều tiết dầu và ngăn ngừa mụn. Thoa một lượng nhỏ lên da ướt, massage nhẹ nhàng rồi rửa lại với nước. Sử dụng hàng ngày, sáng và tối. Dành cho da dầu và da mụn.";
                     productImg = "https://skincode.com.vn/upload/2022/08/24/files/skincode-essentials-S_O_S-oil-control-clarifying-wash.jpg";
+                    productPrice = 995000;
                     break;
                 case "Skincode Essentials Purifying Cleansing Gel":
                     productDetails = "Chiết xuất lô hội, vitamin B5, không chứa paraben. Làm sạch sâu, chống khuẩn, ngừa viêm nhiễm và hỗ trợ điều trị mụn. Thoa một lượng nhỏ lên da ướt, massage nhẹ nhàng rồi rửa lại với nước. Sử dụng hàng ngày, sáng và tối. Phù hợp cho da dầu và da hỗn hợp.";
                     productImg = "https://skincode.com.vn/upload/2022/08/24/files/skincode-essentials-purifying-cleansing-gel.jpg";
+                    productPrice = 950000;
                     break;
                 case "Skincode Micellar Water All In One Cleanser":
                     productDetails = "Công nghệ Micellar, không chứa paraben.";
                     productImg = "https://skincode.com.vn/upload/2022/08/24/files/skincode-essentials-micellar-water-all-in-one-cleanser.jpg";
+                    productPrice = 1050000;
                     break;
                 default:
                     productDetails = "Không có thông tin chi tiết.";
@@ -532,6 +538,8 @@
                 <h2>${productName}</h2>
                 ${productImg ? `<img src="${productImg}" alt="${productName}">` : ''}
                 <p>${productDetails}</p>
+                <p>Giá: ${productPrice.toLocaleString()} VND</p>
+                <button onclick="addToCart('${productName}', ${productPrice})">Mua Ngay</button>
                 <button onclick="closeProductDetailsPopup()">Đóng</button>
             `;
             document.getElementById("product-details-info").innerHTML = popupContent;
@@ -612,4 +620,19 @@
                 <tbody id="cart-items"></tbody>
             </table>
             <p><strong>Tổng sản phẩm:</strong> <span id="total-quantity">0</span></p>
-            <p><strong>Tổng giá:</strong> <span id="
+            <p><strong>Tổng giá:</strong> <span id="total-price">0 VND</span></p>
+            <button onclick="checkout()">Thanh toán</button>
+        </section>
+        <div id="payment-popup">
+            <div id="payment-info"></div>
+            <button onclick="closePopup()">Đóng</button>
+        </div>
+        <div id="product-details-popup">
+            <div id="product-details-info"></div>
+        </div>
+    </main>
+    <footer>
+        <p>© 2023 Vi's Corner. All rights reserved.</p>
+    </footer>
+</body>
+</html>
