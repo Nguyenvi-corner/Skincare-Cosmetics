@@ -3,58 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sản Phẩm Chăm Sóc Da - Vi’s Corner</title>
+    <title>Vi’s Corner - Tư Vấn Làm Đẹp</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        let cart = [];
-        
-        function addToCart(name, price) {
-            let product = cart.find(item => item.name === name);
-            if (product) {
-                product.quantity += 1;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
-            updateCartUI();
-        }
-        
-        function updateCartUI() {
-            let cartContent = document.getElementById("cart-items");
-            let totalPrice = 0;
-            let totalQuantity = 0;
-            cartContent.innerHTML = "";
-            
-            cart.forEach(item => {
-                let row = document.createElement("tr");
-                row.innerHTML = `<td>${item.name}</td><td>${item.quantity}</td><td>${item.price.toLocaleString()} VND</td>`;
-                cartContent.appendChild(row);
-                totalQuantity += item.quantity;
-                totalPrice += item.price * item.quantity;
-            });
-            
-            document.getElementById("total-quantity").innerText = totalQuantity;
-            document.getElementById("total-price").innerText = totalPrice.toLocaleString() + " VND";
-        }
-        
-        function checkout() {
-            let orderId = "ORDER-" + Math.floor(Math.random() * 1000000);
-            let paymentInfo = `
-                <p><strong>Thông tin thanh toán</strong></p>
-                <p>Tài khoản: <strong>VCB 0071004369538</strong></p>
-                <p>Chủ tài khoản: <strong>Nguyễn Song Quỳnh Vi</strong></p>
-                <p>Nội dung chuyển khoản: <strong>${orderId}</strong></p>
-                <p>Tổng sản phẩm: <strong>${document.getElementById("total-quantity").innerText}</strong></p>
-                <p>Tổng giá: <strong>${document.getElementById("total-price").innerText}</strong></p>
-                <p><a href="https://zalo.me/0329909247" target="_blank">Xác nhận thanh toán qua Zalo</a></p>
-            `;
-            document.getElementById("payment-info").innerHTML = paymentInfo;
-            document.getElementById("payment-popup").style.display = "block";
-        }
-        
-        function closePopup() {
-            document.getElementById("payment-popup").style.display = "none";
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -62,48 +13,39 @@
         <nav>
             <ul>
                 <li><a href="index.html">Trang chủ</a></li>
-                <li><a href="products.html">Sản phẩm</a></li>
+                <li><a href="product.html">Sản phẩm</a></li>
                 <li><a href="blog.html">Beauty Tips</a></li>
             </ul>
         </nav>
     </header>
     
-    <section class="products">
-        <h2>Sản Phẩm Chăm Sóc Da</h2>
-        <div class="product-list">
-            <div class="product">
-                <img src="https://skincode.com.vn/upload/2022/10/17/images/skincode-3-in-1-gentle-cleanser-2.jpg" alt="Skincode 3-in-1 Gentle Cleanser">
-                <h3>Sữa rửa mặt tẩy trang Skincode 3-in-1</h3>
-                <p>Giá: 1,100,000 VND</p>
-                <button onclick="addToCart('Skincode 3-in-1 Gentle Cleanser', 1100000)">Mua Ngay</button>
-            </div>
-            <div class="product">
-                <img src="https://skincode.com.vn/upload/2022/08/24/files/skincode-essentials-S_O_S-oil-control-clarifying-wash.jpg" alt="Skincode S.O.S Oil Control Clarifying Wash">
-                <h3>Sữa rửa mặt kiềm dầu Skincode S.O.S</h3>
-                <p>Giá: 995,000 VND</p>
-                <button onclick="addToCart('Skincode S.O.S Oil Control', 995000)">Mua Ngay</button>
-            </div>
+    <section class="hero">
+        <div class="hero-image">
+            <img src="https://c.files.bbci.co.uk/6976/production/_103889962_1a.jpg" alt="Hình nền aesthetic với các sản phẩm makeup, skincare">
         </div>
     </section>
-    
-    <section class="cart">
-        <h2>Giỏ Hàng</h2>
-        <table>
-            <thead>
-                <tr><th>Sản phẩm</th><th>Số lượng</th><th>Giá</th></tr>
-            </thead>
-            <tbody id="cart-items"></tbody>
-        </table>
-        <p><strong>Tổng sản phẩm:</strong> <span id="total-quantity">0</span></p>
-        <p><strong>Tổng giá:</strong> <span id="total-price">0 VND</span></p>
-        <button onclick="checkout()">Thanh Toán</button>
+
+    <section class="about">
+        <h2>Vi’s Corner – Không Chỉ Làm Đẹp, Mà Là Hiểu Rõ Làn Da Bạn</h2>
+        <p>Vi’s Corner không bán sản phẩm đại trà. Chúng tôi tập trung vào tư vấn cá nhân hóa để giúp bạn chọn đúng sản phẩm theo tình trạng da & phong cách trang điểm yêu thích.</p>
     </section>
-    
-    <div id="payment-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:20px; border:1px solid black;">
-        <div id="payment-info"></div>
-        <button onclick="closePopup()">Đóng</button>
-    </div>
-    
+
+    <section class="chatbot-info">
+        <h2>Nhận Ngay Tư Vấn Chăm Sóc Da & Makeup Chỉ Trong 1 Phút!</h2>
+        <p>Chatbot AI sẽ giúp bạn:</p>
+        <ul>
+            <li>Kiểm tra tình trạng da</li>
+            <li>Gợi ý sản phẩm skincare phù hợp</li>
+            <li>Đề xuất phong cách makeup theo sở thích</li>
+        </ul>
+    </section>
+
+    <section class="featured-products">
+        <h2>Sản phẩm nổi bật</h2>
+        <p>Khám phá những sản phẩm chăm sóc da tốt nhất!</p>
+        <a href="product.html" class="btn px-6 py-3 mt-4 rounded-lg text-lg shadow-lg inline-block">Xem tất cả sản phẩm</a>
+    </section>
+
     <script>
         window.lovinbotChatbotConfig = {
             token: 'EYo0ZfYTjSBZXUvO',
@@ -118,3 +60,58 @@
     </script>
 </body>
 </html>
+
+<style>
+    body {
+        font-family: 'Playfair Display', serif;
+        background-color: #f7ebe5;
+        color: #5a3e36;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    header {
+        background: #d9a7a0;
+        padding: 20px;
+        color: white;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin: 0 15px;
+    }
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .hero {
+        padding: 50px;
+        background: #ffede1;
+    }
+    .hero-image img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 10px;
+    }
+    .chatbot-info {
+        padding: 30px;
+        background: #f3d9d3;
+        border-radius: 10px;
+        margin: 20px;
+    }
+    .chatbot-info h2 {
+        color: #5a3e36;
+    }
+    .chatbot-info ul {
+        list-style: none;
+        padding: 0;
+    }
+    .chatbot-info ul li {
+        margin: 5px 0;
+    }
+</style>
